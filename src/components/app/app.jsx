@@ -8,12 +8,13 @@ const App = (props) => {
   return (
     <WelcomeScreen
       errorCount={errorCount}
+      onWelcomeButtonClick={() => {}}
     />
   );
 };
 
 App.propTypes = {
-  errorCount: PropTypes.number.isRequired
+  errorCount: PropTypes.number.isRequired,
 };
 
 export default App;
