@@ -1,15 +1,30 @@
 import React from "react";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
 import PropTypes from "prop-types";
 import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
+import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen.jsx";
+import GenreQuestionScreen from "../genre-question-screen/genre-question-screen.jsx";
 
 const App = (props) => {
   const {errorCount} = props;
 
   return (
-    <WelcomeScreen
-      errorCount={errorCount}
-      onWelcomeButtonClick={() => {}}
-    />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <WelcomeScreen
+            errorCount={errorCount}
+            onWelcomeButtonClick={() => {}}
+          />
+        </Route>
+        <Route exact path="/dev-artist">
+          <ArtistQuestionScreen />
+        </Route>
+        <Route exact path="/dev-genre">
+          <GenreQuestionScreen />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 
