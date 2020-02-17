@@ -6,7 +6,7 @@ import ArtistQuestionScreen from "../artist-question-screen/artist-question-scre
 import GenreQuestionScreen from "../genre-question-screen/genre-question-screen.jsx";
 
 const App = (props) => {
-  const {errorCount} = props;
+  const {errorCount, questions} = props;
 
   return (
     <BrowserRouter>
@@ -18,10 +18,14 @@ const App = (props) => {
           />
         </Route>
         <Route exact path="/dev-artist">
-          <ArtistQuestionScreen />
+          <ArtistQuestionScreen
+            question={questions[0]}
+          />
         </Route>
         <Route exact path="/dev-genre">
-          <GenreQuestionScreen />
+          <GenreQuestionScreen
+            question={questions[1]}
+          />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -30,6 +34,7 @@ const App = (props) => {
 
 App.propTypes = {
   errorCount: PropTypes.number.isRequired,
+  questions: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 
 export default App;
