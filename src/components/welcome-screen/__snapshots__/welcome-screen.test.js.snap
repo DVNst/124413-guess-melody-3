@@ -24,6 +24,11 @@ exports[`Should WelcomeScreen render correctly 1`] = `
       Начать игру
     </span>
   </button>
+  <h2
+    className="welcome__rules-title"
+  >
+    Правила игры
+  </h2>
   <p
     className="welcome__text"
   >
@@ -33,12 +38,12 @@ exports[`Should WelcomeScreen render correctly 1`] = `
     className="welcome__rules-list"
   >
     <li>
-      Нужно ответить на все вопросы
+      Нужно ответить на все вопросы.
     </li>
     <li>
       Можно допустить 
       3
-       ошибки
+       ошибки.
     </li>
   </ul>
   <p
