@@ -32,7 +32,7 @@ const ArtistQuestionScreen = (props) => {
       </form>
     </section>
   );
-}
+};
 
 ArtistQuestionScreen.propTypes = {
   question: PropTypes.shape({
