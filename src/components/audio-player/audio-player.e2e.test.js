@@ -11,6 +11,9 @@ const mock = {
 };
 
 it(`AudioPlayer button be pressed`, () => {
+  const playMock = jest.spyOn(window.HTMLMediaElement.prototype, `play`)
+      .mockImplementation(() => {});
+
   const audioPlayer = mount(
       <AudioPlayer
         src={mock.src}
@@ -31,4 +34,6 @@ it(`AudioPlayer button be pressed`, () => {
 
   expect(playButton.hasClass(`track__button--pause`)).toBe(false);
   expect(playButton.hasClass(`track__button--play`)).toBe(true);
+
+  playMock.mockRestore();
 });
