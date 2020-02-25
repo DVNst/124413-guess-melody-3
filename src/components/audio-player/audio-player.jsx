@@ -20,9 +20,11 @@ class AudioPlayer extends PureComponent {
 
     audio.src = src;
 
-    audio.oncanplaythrough = () => this.setState({
-      isLoading: false,
-    });
+    audio.oncanplaythrough = () => {
+      this.setState({
+        isLoading: false,
+      });
+    };
 
     audio.onplay = () => {
       this.setState({
@@ -36,9 +38,11 @@ class AudioPlayer extends PureComponent {
       });
     };
 
-    audio.ontimeupdate = () => this.setState({
-      progress: audio.currentTime
-    });
+    audio.ontimeupdate = () => {
+      this.setState({
+        progress: audio.currentTime
+      });
+    };
   }
 
   componentWillUnmount() {
