@@ -1,9 +1,51 @@
 import {reducer, ActionType, ActionCreator} from "./reducer.js";
 
+const questions = [
+  {
+    type: `artist`,
+    track: {
+      artist: `artist1`,
+      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+    },
+    answers: [
+      {
+        picture: `https://api.adorable.io/avatars/200/A`,
+        artist: `artist1`,
+      }, {
+        picture: `https://api.adorable.io/avatars/200/AA`,
+        artist: `artist2`,
+      }, {
+        picture: `https://api.adorable.io/avatars/200/AB`,
+        artist: `artist3`,
+      }
+    ]
+  }, {
+    type: `genre`,
+    genre: `rock`,
+    answers: [
+      {
+        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        genre: `rock`,
+      }, {
+        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        genre: `blues`,
+      }, {
+        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        genre: `jazz`,
+      }, {
+        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        genre: `rock`,
+      }
+    ],
+  }
+];
+
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     step: -1,
     mistakes: 0,
+    maxMistakes: 3,
+    questions,
   });
 });
 
@@ -11,23 +53,27 @@ it(`Reducer should increment current step by a given value`, () => {
   expect(reducer({
     step: -1,
     mistakes: 0,
+    questions,
   }, {
     type: ActionType.INCREMENT_STEP,
     payload: 1,
   })).toEqual({
     step: 0,
     mistakes: 0,
+    questions,
   });
 
   expect(reducer({
     step: -1,
     mistakes: 0,
+    questions,
   }, {
     type: ActionType.INCREMENT_STEP,
     payload: 0,
   })).toEqual({
     step: -1,
     mistakes: 0,
+    questions,
   });
 });
 
@@ -66,7 +112,7 @@ describe(`Action creators work correctly`, () => {
   it(`Action creator for incrementing mistake returns action with 0 payload if answer for artist is correct`, () => {
     expect(ActionCreator.incrementMistake({
       type: `artist`,
-      song: {
+      track: {
         artist: `correct`,
         src: ``,
       },
@@ -94,7 +140,7 @@ describe(`Action creators work correctly`, () => {
   it(`Action creator for incrementing mistake returns action with 1 payload if answer for artist is incorrect`, () => {
     expect(ActionCreator.incrementMistake({
       type: `artist`,
-      song: {
+      track: {
         artist: `correct`,
         src: ``,
       },

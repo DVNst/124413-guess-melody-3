@@ -15,13 +15,13 @@ const GenreQuestionScreenWrapped = withAudioPlayer(GenreQuestionScreen);
 
 class App extends PureComponent {
   _renderGameScreen() {
-    const {errorCount, questions, onUserAnswer, onWelcomeButtonClick, step} = this.props;
+    const {maxMistakes, questions, onUserAnswer, onWelcomeButtonClick, step} = this.props;
     const question = questions[step];
 
     if (step === -1 || step >= questions.length) {
       return (
         <WelcomeScreen
-          errorCount={errorCount}
+          errorCount={maxMistakes}
           onWelcomeButtonClick={onWelcomeButtonClick}
         />
       );
@@ -85,7 +85,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  errorCount: PropTypes.number.isRequired,
+  maxMistakes: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   onUserAnswer: PropTypes.func.isRequired,
   onWelcomeButtonClick: PropTypes.func.isRequired,
@@ -94,6 +94,8 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   step: state.step,
+  maxMistakes: state.maxMistakes,
+  questions: state.questions,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -101,7 +103,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.incrementStep());
   },
   onUserAnswer(question, answer) {
-    dispatch(ActionCreator.incrementStep(question, answer));
+    dispatch(ActionCreator.incrementMistake(question, answer));
+    dispatch(ActionCreator.incrementStep());
   },
 });
 

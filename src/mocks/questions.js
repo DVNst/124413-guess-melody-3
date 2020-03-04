@@ -9,13 +9,13 @@ export default [
     },
     answers: [
       {
-        picture: `${AVATAR_URL}/${Math.random()}`,
+        picture: `${AVATAR_URL}/A`,
         artist: `artist1`,
       }, {
-        picture: `${AVATAR_URL}/${Math.random()}`,
+        picture: `${AVATAR_URL}/AA`,
         artist: `artist2`,
       }, {
-        picture: `${AVATAR_URL}/${Math.random()}`,
+        picture: `${AVATAR_URL}/AB`,
         artist: `artist3`,
       }
     ]
